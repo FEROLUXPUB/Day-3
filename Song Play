@@ -1,0 +1,32 @@
+// Step 1: Create Interface with abstract and default method
+interface Playable {
+    void play(); // abstract method
+
+    default void pause() { // default method
+        System.out.println("Song paused.");
+    }
+}
+
+// Step 2: Create class2 that implements Playable interface
+class Song implements Playable {
+    private String title;
+
+    // Constructor
+    Song(String title) {
+        this.title = title;
+    }
+
+    // Override play() method
+    public void play() {
+        System.out.println("Playing song: " + title);
+    }
+}
+
+// Step 3: Test class with main2 metho
+public class Main {
+    public static void main(String[] args) {
+        Song mySong = new Song("Imagine by John Lennon");
+        mySong.play();   // Call overridden method
+        mySong.pause();  // Call default method from interface
+    }
+}
