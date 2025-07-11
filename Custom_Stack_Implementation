@@ -1,0 +1,62 @@
+package Custom_Stack_Implementation;
+**MyStackTest.java**
+
+public class MyStackTest {
+    public static void main(String[] args) {
+        MyStack<Integer> stack = new MyStack<>();
+
+        System.out.println("Is stack empty? " + stack.isEmpty());
+
+        // Push elements
+        stack.push(10);
+        stack.push(20);
+        stack.push(30);
+
+        System.out.println("Top element (peek): " + stack.peek()); // Should be 30
+
+        // Pop elements
+        System.out.println("Popped: " + stack.pop()); // 30
+        System.out.println("Popped: " + stack.pop()); // 20
+
+        System.out.println("Top element after popping: " + stack.peek()); // Should be 10
+        System.out.println("Is stack empty? " + stack.isEmpty()); // false
+
+        System.out.println("Popped: " + stack.pop()); // 10
+        System.out.println("Is stack empty now? " + stack.isEmpty()); // true
+
+        // Uncomment to test popping from empty stack
+        // stack.pop(); // Throws NoSuchElementException
+    }
+}
+
+**MyStack.java**
+
+package Custom_Stack_Implementation;
+
+import java.util.LinkedList;
+import java.util.NoSuchElementException;
+import java.util.Scanner;
+
+public class MyStack<T> {
+    private LinkedList<T> list = new LinkedList<>();
+
+    public void push(T element){
+        list.addFirst(element);
+    }
+    public T pop(){
+        if(list.isEmpty()){
+            throw new NoSuchElementException("Stack is empty. Cannot pop element.");
+        }
+        return list.removeFirst();
+    }
+    public T peek(){
+        if(list.isEmpty()){
+            throw new NoSuchElementException("Stack is empty. Cannot peek element.");
+        }
+        return list.getFirst();
+    }
+    public boolean isEmpty(){
+        return (list.isEmpty());
+    }
+}
+
