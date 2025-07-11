@@ -1,0 +1,55 @@
+**VehicleDemo.java Main**
+package AbstractDemo;
+
+public class VehicleDemo {
+    public static void main(String[] args) {
+        Vehicle myCar = new Car();
+        Vehicle myBike = new Bike();
+
+        // Start and stop car
+        myCar.start();
+        myCar.stop();
+
+        // Start and stop bike
+        myBike.start();
+        myBike.stop();
+    }
+}
+
+
+**Car.java**
+package AbstractDemo;
+
+public class Car extends Vehicle {
+    @Override
+    public void  start() {
+        System.out.println("Car is starting with a key.");
+    }
+}
+
+
+**Bike.java**
+package AbstractDemo;
+
+public class Bike extends Vehicle{
+
+    @Override
+    public void start(){
+        System.out.println("Bike is  starting With a self-start button.");
+    }
+}
+
+**Vehicle.java**
+package AbstractDemo;
+
+public abstract class Vehicle {
+    // Abstract method
+    public abstract void start();
+
+    // Concrete method
+    public void stop() {
+        System.out.println("Vehicle stopped.");
+    }
+
+}
+
