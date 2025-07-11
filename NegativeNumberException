@@ -1,0 +1,36 @@
+
+public class NegativeNumberException extends Exception {
+    public NegativeNumberException(String Message) {
+        super(Message);
+
+    }
+}
+
+
+// Main class with method to check positive number
+public class Main {
+
+    // Method to check if number is positive
+    public static void checkPositive(int number) throws NegativeNumberException {
+        if (number < 0) {
+            throw new NegativeNumberException("Negative number detected: " + number);
+        } else {
+            System.out.println("Number is positive: " + number);
+        }
+    }
+
+    public static void main(String[] args) {
+        try {
+            checkPositive(20);  // Valid
+            checkPositive(-55);  // Will throw exception
+        } catch (NegativeNumberException e) {
+            System.out.println("Exception caught: " + e.getMessage());
+        }
+    }
+}
+
+
+output:
+Number is positive: 20
+Exception caught: Negative number detected: -55
+
