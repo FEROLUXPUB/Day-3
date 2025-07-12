@@ -1,0 +1,46 @@
+**LogReader.java**
+
+package File_Based_Exception_Handling;
+import java.io.*;
+
+public class LogReader {
+    public static void readLogFile(String filename)throws LogProcessingException {
+        try (BufferedReader reader = new BufferedReader(new FileReader(filename))){
+            String line;
+            System.out.println("Reading log file:: " +filename);
+            while((line = reader.readLine()) != null){
+                System.out.println(line);
+            }
+
+        }catch (FileNotFoundException e){
+            throw new LogProcessingException("Log file not found: "+ filename, e);
+
+        }catch (IOException e){
+            throw new LogProcessingException("I/O error while reading log file: "+ filename, e);
+        }
+
+    }
+    // Main method for testing
+    public static void main(String[] args) {
+        String filename = "log.txt"; // You can replace with your log file path
+
+        try {
+            readLogFile(filename);
+        } catch (LogProcessingException e) {
+            System.err.println("Error occurred while processing log: " + e.getMessage());
+            e.printStackTrace(); // Optional: print detailed stack trace
+        }
+    }
+
+}
+
+**LogProcessingException.java**
+package File_Based_Exception_Handling;
+
+public class LogProcessingException extends Exception {
+    public LogProcessingException(String message, Throwable cause) {
+        super(message, cause);
+    }
+}
+
+
